@@ -8,13 +8,29 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+ <!---Les categories-->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php foreach ($categories as $categorie) :?>
+      <a href="categorie_detail.php?categorie_id=<?php echo $categorie -> id; ?>" class="text-decoration-none">
+      <div class="col">
+        <div class="card">
+          <img
+            src="images_the_district/category_actuel/<?=$categorie -> image?>"class="img-responsive mw-100"
+            class="salade_cat-top"
+            alt="..."
+          />
+          <div class="card-body" style="width: 500px">
+            <h5 class="card-title"><?=$categorie -> libelle?></h5>
+          </div>
+        </div>
+      </div>
+    </a>
+      <?php endforeach; ?>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/stagiaire/Bureau/Ms-Dev_Appli/monProjet/src/Controller/CategorieController.php'|file_link(0) }}">src/Controller/CategorieController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/stagiaire/Bureau/Ms-Dev_Appli/monProjet/templates/categorie/index.html.twig'|file_link(0) }}">templates/categorie/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <!--fin categorie-->
+    <?php include_once('footer.php') ?>
+    
+
+
 {% endblock %}

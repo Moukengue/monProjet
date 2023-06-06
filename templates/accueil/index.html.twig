@@ -7,7 +7,7 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<nav class="navbar navbar-expand-lg " id="img_color">
+ <nav class="navbar navbar-expand-lg " id="img_color">
     <div class="container-fluid lili">
       <a class="navbar-brand" href="accueil.php">
         <img src="images_the_district/the_district_brand/logo_transparent_sm.png" height="100px" alt="logo" />
@@ -17,7 +17,8 @@
 
         <span class="navbar-toggler-icon"></span>
       </button>
- <div class="    collapse navbar-collapse" id="navbarNav">
+
+      <div class="    collapse navbar-collapse" id="navbarNav">
 
         <ul class="nav justify-content-center">
           <li class="nav-item">
@@ -41,4 +42,56 @@
         </ul>
       </div>
     </div>
+  </nav>
+
+  <div class="mt-3 mb-3 p-5">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mx-auto p-3" style="background-color:purple">
+        <form method="post" action="resultats_recherche.php" class="d-flex" role="search">
+          <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche" aria-label="Search" required />
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!---Les categories-->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php
+    $categories = afficherCategoriesPopulaire();
+    //L'instruction foreach permet de parcourir un tableau et d'extraire chaque élément.foreach est une boucle
+    foreach ($categories as $categorie) : ?>
+      <a href="categorie_detail.php?categorie_id=<?php echo $categorie->id; ?>" class="text-decoration-none">
+        <div class="col">
+          <div class="card">
+            <img src="images_the_district/category_actuel/<?= $categorie->image ?>" class="" alt="..." />
+            <div class="card-body" style="width: 500px">
+              <h5 class="card-title"><?= $categorie->libelle ?></h5>
+            </div>
+          </div>
+        </div>
+      </a>
+    <?php endforeach; ?>
+  </div>
+
+  <!--fin categorie-->
+  <!--les plats accueil-->
+
+  <div class="card-group ">
+    <?php
+    $plats = lesPlatsLesPlusVendus();
+    foreach ($plats as $plat) : ?>
+      <a href="plat_detail.php?plat_id=<?php echo $plat->id; ?>" class="text-decoration-none">
+        <div class="card m-3">
+          <img src="images_the_district/fooda_actuel/<?= $plat->image; ?> " class="img-responsive mw-100" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title"><?= $plat->libelle ?></h5>
+          </div>
+        </div>
+      </a>
+    <?php endforeach; ?>
+  </div>
+  <!--fin plats-->
+
+
 {% endblock %}
