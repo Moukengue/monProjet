@@ -7,42 +7,7 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
- <nav class="navbar navbar-expand-lg " id="img_color">
-    <div class="container-fluid lili">
-      <a class="navbar-brand" href="accueil.php">
-        <img src="images_the_district/the_district_brand/logo_transparent_sm.png" height="100px" alt="logo" />
-
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="    collapse navbar-collapse" id="navbarNav">
-
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link fs-3" href="">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-3" href="categorie.php">Categorie</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-3" href="plat.php">Plats</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-3" href="contact.php">Contact</a>
-          </li>
-
-          <div class="nav-item"><a  class="nav-link fs-3" href="connexion.php">
-              <button class="btn mx-2 " id="dispayform">Se connecter</button>
-            </a></div>
-
-
-        </ul>
-      </div>
-    </div>
-  </nav>
+ 
 
   <div class="mt-3 mb-3 p-5">
     <div class="row">
@@ -57,7 +22,7 @@
 
   <!---Les categories-->
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <?php
+   
     $categories = afficherCategoriesPopulaire();
     //L'instruction foreach permet de parcourir un tableau et d'extraire chaque élément.foreach est une boucle
     foreach ($categories as $categorie) : ?>
@@ -71,7 +36,7 @@
           </div>
         </div>
       </a>
-    <?php endforeach; ?>
+    
   </div>
 
   <!--fin categorie-->

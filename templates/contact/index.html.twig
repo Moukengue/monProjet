@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    
+    <form class="form_contact">
+        <h1>Contactez-nous</h1>
+        <div class="separation"></div>
+            <div class="corps-formulaire">
+                <div class="gauche">
+                    <div class="groupe">
+                        <label>Votre prenom</label>
+                        <input type="text">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="groupe">
+                    <label>Votre adresse e-mail</label>
+                        <input type="text">
+                        <i class="fa-solid fa-envelope"></i>
+                        
+                    </div>
+                </div>
+                <div class="droite">
+                    <div class="groupe">
+                        <label>Message</label>
+                        <textarea  placeholder="Saisissez ici..."></textarea>
+                    </div>
+                </div>
+
+        </div>
+        <div class="pied-formulaire" align="center">
+            <button>Envoyer le message</button>
+            <a href="accueil.php" class="btn btn-primary">Retour</a>
+        </div>
+    </form>
+</body>
+</div>
+{% endblock %}

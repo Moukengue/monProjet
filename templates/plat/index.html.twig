@@ -1,20 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlatController!{% endblock %}
+{% block title %}Hello PlatController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/stagiaire/Bureau/Ms-Dev_Appli/monProjet/src/Controller/PlatController.php'|file_link(0) }}">src/Controller/PlatController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/stagiaire/Bureau/Ms-Dev_Appli/monProjet/templates/plat/index.html.twig'|file_link(0) }}">templates/plat/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<!---Les plats-->
+
+	<div class="row">
+		<?php foreach ($plats as $plat):?>
+		<div class="col">
+			<a href="plat_detail.php?plat_id=<?php echo $plat->id; ?>" class="text-decoration-none">
+				<div class="card">
+					<img src="images_the_district/fooda_actuel/<?=$plat -> image?>" class="img-responsive mw-100" class="salade_cat-top" alt="..."/>
+					<div class="card-body" style="width: 500px">
+						<h4 class="card-title"><?=$plat -> libelle?></h4>
+						<h5 class=""><?=$plat -> description?></h5>
+						<h6><?=$plat -> prix?>€</h6>
+
+						<button type="submit" class="btn btn-outline-primary">Commande</button>
+					</div>
+				</div>
+			</a>
+		</div>
+		<?php endforeach; ?>
+	</div>
+
+	<!--fin plats-->
+
 {% endblock %}
