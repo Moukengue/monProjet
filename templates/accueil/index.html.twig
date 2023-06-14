@@ -21,6 +21,21 @@
   </div>
 
   <!---Les categories-->
+
+<div class="container">
+         <div class="row mt-5">
+             <div class="col-10 mx-auto">
+                 <h1>Nombre categories trouvés : {{ categories | length }}</h1>
+                 {% for categorie in categories %}
+                 <span class="d-block">
+                     {{ categorie["libelle"]|upper }} 
+                     <img src="/image/category_actuel/{{ categorie["image"] }} />
+                 </span>
+                 {% endfor %}
+             </div>
+         </div>
+     </div>
+
   <div class="row row-cols-1 row-cols-md-3 g-4">
    
     
@@ -28,7 +43,7 @@
       <a href="" class="text-decoration-none">
         <div class="col">
           <div class="card">
-            <img src=" class="" alt="..." />
+            <img src=" class="" alt="" />
             <div class="card-body" style="width: 500px">
               <h5 class="card-title"></h5>
             </div>
@@ -44,12 +59,12 @@
   <div class="card-group ">
     <?php
     $plats = lesPlatsLesPlusVendus();
-    foreach ($plats as $plat) : ?>
-      <a href="plat_detail.php?plat_id=<?php echo $plat->id; ?>" class="text-decoration-none">
+    
+      < class="text-decoration-none">
         <div class="card m-3">
-          <img src="images_the_district/fooda_actuel/<?= $plat->image; ?> " class="img-responsive mw-100" class="card-img-top" />
+         
           <div class="card-body">
-            <h5 class="card-title"><?= $plat->libelle ?></h5>
+            <h5 class="card-title"></h5>
           </div>
         </div>
       </a>

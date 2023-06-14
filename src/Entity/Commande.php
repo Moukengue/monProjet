@@ -26,7 +26,7 @@ class Commande
     private ?int $etat = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?utilisateur $utilisateur = null;
+    private ?Utilisateur $utilisateur = null;
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Detail::class)]
     private Collection $details;

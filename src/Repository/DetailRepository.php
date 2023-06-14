@@ -39,20 +39,23 @@ class DetailRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Detail[] Returns an array of Detail objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Detail[] Returns an array of Detail objects
+    */
+   public function findCatPop(): array
+   {
+       return $this->createQueryBuilder('d')
+        ->select('count(comm.id) as nombre_commandes, c.libelle, c.image')
+        ->join('d.commande', 'comm')
+        ->join('d.plat', 'p')
+        ->join('p.categorie', 'c')
+        ->groupby('p.id')
+        ->orderBy('count(comm.id)', 'desc')
+        ->setMaxResults(6)
+        ->getQuery()
+        ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Detail
 //    {
