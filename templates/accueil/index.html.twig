@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Sym_The_district!{% endblock %}
 
 {% block body %}
 <style>
@@ -29,7 +29,7 @@
                  {% for categorie in categories %}
                  <span class="d-block">
                      {{ categorie["libelle"]|upper }} 
-                     <img src="/image/category_actuel/{{ categorie["image"] }} />
+                     <img src="{{ asset('image/category_actuel/') ~ categorie.image }}" />
                  </span>
                  {% endfor %}
              </div>
