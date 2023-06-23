@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlatController!
+{% block title %}SymPlat
 {% endblock %}
 
 {% block body %}
@@ -21,22 +21,25 @@
 	<!---Les plats-->
 
 	<div class="row">
-		<?php foreach ($plats as $plat):?>
 		<div class="col">
 			<a href="plat_detail.php?plat_id=<?php echo $plat->id; ?>" class="text-decoration-none">
 				<div class="card">
-					<img src="images_the_district/fooda_actuel/<?=$plat -> image?>" class="img-responsive mw-100" class="salade_cat-top" alt="..."/>
-					<div class="card-body" style="width: 500px">
-						<h4 class="card-title"><?=$plat -> libelle?></h4>
-						<h5 class=""><?=$plat -> description?></h5>
-						<h6><?=$plat -> prix?>€</h6>
+					 <div class="col-10 mx-auto"> 
+                 <h1>Nos PLats {{ plats | length }}</h1>
 
+                 {% for plat in plats %}
+                 <span class="d-block">
+                     {# {{ plat ["libelle"]|upper }}  #}
+                     <img src="{{ asset('image/food_actuel/') ~ plat.image  }}" />
+                 </span>
+                 {% endfor %}
+             </div>
 						<button type="submit" class="btn btn-outline-primary">Commande</button>
 					</div>
 				</div>
-			</a>
+			{# </a> #}
 		</div>
-		<?php endforeach; ?>
+		
 	</div>
 
 	<!--fin plats-->

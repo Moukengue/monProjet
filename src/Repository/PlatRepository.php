@@ -36,31 +36,25 @@ class PlatRepository extends ServiceEntityRepository
 
         if ($flush) {
             $this->getEntityManager()->flush();
-        }
+        }        
     }
 
-//    /**
-//     * @return Plat[] Returns an array of Plat objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Plat
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getSomePlats($libelle) : array
+    {
+        //$libelle dans la recherche ;
+
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->andWhere('p.libelle like :libelle') //le `placeholder, comme en PDO!
+            ->orWhere('p.description like :libelle')
+            ->setParameter('libelle', '%'.$libelle.'%')
+            ->orderBy('p.id', 'ASC');
+
+        $plats = $qb->getQuery()->getResult();
+        return $plats;
+    }  
+
+  
 }

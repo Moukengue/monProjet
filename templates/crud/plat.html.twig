@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sym-Crud_plat{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+<h1> Mes Plats</h1>
+
+ {% for plat in plats %}
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Libelle</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+           
+      
+      <tr class="table-success">
+        <td>Success</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      
+      
+      <tr class="table-warning">
+        <td>Warning</td>
+        <td>Refs</td>
+        <td>bo@example.com</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+
+ {% endfor %}
+
+</div>
+
+
+
+{% endblok %}

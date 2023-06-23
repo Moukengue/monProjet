@@ -21,4 +21,23 @@ class PlatDetailController extends AbstractController
             'ma_variable'=>$ma_variable
         ]);
     }
+
+    //   #[Route('/recherche', name: 'app_plat_detail')]
+    // public function indexPlat_detail( Request $request): Response
+       
+    //    {
+    //     //  dd($categories);
+    //     $detail = $request->request->get('id');
+    //     // dd($search);
+    //     $plat_detail = $this->platRepo->getSomePlats($detail);
+
+
+
+    //     return $this->render('plat_detail/id.html.twig', [
+    //         'controller_name' => 'Plat_detailController',
+            
+    //         'plats'=> $detail,
+            
+    //     ]);
+    // }
 }

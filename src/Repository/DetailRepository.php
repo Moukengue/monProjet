@@ -49,13 +49,34 @@ class DetailRepository extends ServiceEntityRepository
         ->join('d.commande', 'comm')
         ->join('d.plat', 'p')
         ->join('p.categorie', 'c')
-        ->groupby('p.id')
+        ->groupby('c.id')
         ->orderBy('count(comm.id)', 'desc')
         ->setMaxResults(6)
         ->getQuery()
         ->getResult()
        ;
    }
+
+   public function Plat3(): array
+   {
+       $queryBuilder = $this->createQueryBuilder('d');
+
+       $queryBuilder
+           ->select('count(p.id) AS nbr_vente, p.id, p.libelle, p.image')
+           ->leftJoin('d.plat', 'p')
+           ->leftJoin('d.commande', 'c')
+        //    ->where('c.etat = 3')
+           ->groupBy('p.id')
+           ->orderBy('nbr_vente', 'DESC')
+           ->setMaxResults(3);
+
+       $result = $queryBuilder->getQuery()->getResult();
+       return $result;
+   }
+   }
+
+
+      
 
 //    public function findOneBySomeField($value): ?Detail
 //    {
@@ -66,4 +87,4 @@ class DetailRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+
