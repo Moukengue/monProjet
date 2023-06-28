@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlatDetailController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<h1>
+		Détails de
+		{{plat.libelle}}</h1>
+
+
+	<div class="card mb-3" style="max-width: 540px;">
+		<div class="mt-5">
+			<h4>{# {{ dump(ma_variable)}} #}
+				<!-- Tous les plats<?php echo $mon_plats[0]->plat_libelle ?> -->
+			</h4>
+		</div>
+
+
+		<div class="row g-0">
+			<div class="card border-warning mb-3" style="max-width: 540px;" >
+				<span class="d-block"  >
+                <div class="col-4;">
+					{{ plat.libelle|upper }}
+					<img src="{{ asset('image/food_actuel/') ~ plat.image }}" />
+                      </div>
+                    
+					<h4 class="card-title">
+					{{ plat.libelle }}</h4>
+					<div class="card-text">
+					Description =
+					{{plat.description }}
+					<br>
+					Prix = 
+					{{ plat.prix  }} €
+					<hr>
+					<a href="{{path("panier_ajouter",{id:plat.id})}}"  class="btn btn-success"</i> > Ajouter</a> 
+					
+                    </div>
+				</span>
+				<div class="col-5">
+					<h5 class="card-title"></h5>
+					<p></p>
+					
+					{# <form method="post" action="commande.php">
+						<input type="hidden" name="plat" value=""/>
+                       
+						//<button type="submit">Ajouter un Panier</button>
+						<!-- </a> -->
+					</form> #}
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlatDetailController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<h1>
+		Détails de
+		{{categorie.libelle}}</h1>
+
+
+	<div class="card mb-3" style="max-width: 540px;">
+		<div class="row g-0">
+			<h4>{# {{ dump(ma_variable)}} #}
+				<!-- Tous les plats<?php echo $mon_plats[0]->plat_libelle ?> -->
+			</h4>
+		</div>
+
+
+		<div class="row g-0">
+			<div class="row">
+				<span class="col-md-4">
+					{{ categorie.libelle|upper }}
+					<img
+					src="{{ asset('image/category_actuel/') ~ categorie.image }}"/>
+
+
+					{# afficher les plats de cette categorie #}
+					{% for plat in categorie.plats %}
+						<div class="card text-end" style="width: 18rem;">
+							<div class="categorie_d">
+								Titre =
+								{{ plat.libelle }}
+								<br>
+
+								Description =
+								{{plat.description }}
+								<br>
+								Prix =
+								{{ plat.prix }}
+								€
+							</div>
+						</div>
+						<br>
+					</span>
+					<div class="col-5">
+						<h5 class="card-title"></h5>
+						<p></p>
+						{# afficher la commande #}
+
+						<form method="post" action="commande.php">
+							<input type="hidden" name="plat" value="<?php echo $plat->id; ?>"/>
+							<button type="submit">Ajouter au panier</button>
+							<!-- </a> -->
+						</form>
+
+						{% endfor%}
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+{% endblock %}

@@ -45,7 +45,7 @@ class DetailRepository extends ServiceEntityRepository
    public function findCatPop(): array
    {
        return $this->createQueryBuilder('d')
-        ->select('count(comm.id) as nombre_commandes, c.libelle, c.image')
+        ->select('count(comm.id) as nombre_commandes, c.libelle, c.image, c.id as id')
         ->join('d.commande', 'comm')
         ->join('d.plat', 'p')
         ->join('p.categorie', 'c')

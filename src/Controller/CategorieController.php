@@ -13,6 +13,7 @@ use App\Repository\UtilisateurRepository;
 use App\Repository\PlatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategorieController extends AbstractController
@@ -38,4 +39,24 @@ class CategorieController extends AbstractController
        
         ]);
     }
+
+     //la route qui affiche le détail d'une catégorie
+
+     #[Route('/categorie_detail/{id}', name: 'app_categorie_detail')]
+     public function  categorie_detail(Request $request, Categorie $id): Response
+       
+       {
+       if($id){
+         $categorie = $id;
+       
+ 
+         return $this->render('categorie/categorie_detail.html.twig', [
+                 'controller_name' => 'CategorieController',
+             
+             'categorie'=> $categorie,
+             
+         ]);
+         }
+         $this->redirectToRoute('app_accueil');
+     }
 }

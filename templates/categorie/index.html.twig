@@ -21,6 +21,8 @@
                      {# {{ categorie["libelle"]|upper }}  #}
                      
                      <img src="{{ asset('image/category_actuel/') ~ categorie.image }}" />
+                     <a href="{{ path('app_categorie_detail',{'id':categorie.id}) }}" id="btn-style" class="btn">Détail</a>
+                     
                  </span>
                  {% endfor %}
           <div class="card-body" style="width: 500px">

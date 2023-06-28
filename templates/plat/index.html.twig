@@ -31,10 +31,12 @@
                  <span class="d-block">
                      {# {{ plat ["libelle"]|upper }}  #}
                      <img src="{{ asset('image/food_actuel/') ~ plat.image  }}" />
+					   <a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn" type="none">Détail</a>
                  </span>
                  {% endfor %}
              </div>
-						<button type="submit" class="btn btn-outline-primary">Commande</button>
+			        {# <a href="{{path("panier_ajouer",{id:plat.id})}}"  class="btn btn-success"  <i class="fa-solid fa-cart-minus"></i> > Ajouter</a> #}
+						{# <button type="submit" class="btn btn-outline-primary">Ajouter un Panier</button> #}
 					</div>
 				</div>
 			{# </a> #}

@@ -22,56 +22,26 @@
 
   <!---Les categories-->
 
-<div class="container">
-         <div class="row mt-5">
-             <div class="col-10 mx-auto">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+         <div class="col ">
+             <div class="card ">
                  <h1>Nombre categories trouvés : {{ categories | length }}</h1>
                  {% for categorie in categories %}
                  <span class="d-block">
                      {{ categorie["libelle"]|upper }} 
                      <img src="{{ asset('image/category_actuel/') ~ categorie.image }}" />
                  </span>
-                 <a href="{{ path('app_categorie') }}"></a>
+                <a href="{{ path('app_categorie_detail',{'id':categorie.id}) }}" id="btn-style" class="btn">Détail</a>
                  {% endfor %}
              </div>
          </div>
      </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-   
-    
-    
-      <a href="" class="text-decoration-none">
-        <div class="col">
-          <div class="card">
-            <img src=""class="" alt="" />
-            <div class="card-body" style="width: 500px">
-              <h5 class="card-title"></h5>
-            </div>
-          </div>
-        </div>
-      </a>
-    
-  </div>
+  
 
   <!--fin categorie-->
   <!--les plats accueil-->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-   
-    
-    
-      <a href="" class="text-decoration-none">
-        <div class="col">
-          <div class="card">
-            <img src=""class="" alt="" />
-            <div class="card-body" style="width: 500px">
-              <h5 class="card-title"></h5>
-            </div>
-          </div>
-        </div>
-      </a>
-    
-  </div>
+  
 
   <div class="card-group ">
    <div class="row mt-5">
@@ -82,7 +52,11 @@
                      {{ plat ["libelle"]|upper }} 
                      <img src="{{ asset('image/food_actuel/') ~ plat.image }}" />
                  </span>
-                  <a href="{{ path('app_categorie') }}"></a>
+                 <!--pour afficher id du plat.detail-->
+                 <div class= "card-body">
+                 <h1  class="card-title"id="card-text">{{plat.libelle}}</h1>
+                 </div>
+                  <a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn">Détail</a>
                  {% endfor %}
              </div>
          </div>
