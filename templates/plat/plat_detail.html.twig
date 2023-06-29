@@ -31,42 +31,33 @@
 
 
 		<div class="row g-0">
-			<div class="card border-warning mb-3" style="max-width: 540px;" >
-				<span class="d-block"  >
-                <div class="col-4;">
-					{{ plat.libelle|upper }}
-					<img src="{{ asset('image/food_actuel/') ~ plat.image }}" />
-                      </div>
-                    
-					<h4 class="card-title">
-					{{ plat.libelle }}</h4>
-					<div class="card-text">
-					Description =
-					{{plat.description }}
-					<br>
-					Prix = 
-					{{ plat.prix  }} €
-					<hr>
-					<a href="{{path("panier_ajouter",{id:plat.id})}}"  class="btn btn-success"</i> > Ajouter</a> 
-					
-                    </div>
-				</span>
-				<div class="col-5">
-					<h5 class="card-title"></h5>
-					<p></p>
-					
-					{# <form method="post" action="commande.php">
-						<input type="hidden" name="plat" value=""/>
-                       
-						//<button type="submit">Ajouter un Panier</button>
-						<!-- </a> -->
-					</form> #}
+			<div class="card border-warning mb-3" style="max-width: 540px;">
+				<span class="d-block">
+					<div class="col-4;">
+						{{ plat.libelle|upper }}
+						<img src="{{ asset('image/food_actuel/') ~ plat.image }}"/>
+					</div>
 
-				</div>
+					<h4 class="card-title">
+						{{ plat.libelle }}</h4>
+					<div class="card-text">
+						Description =
+						{{plat.description }}
+						<br>
+						Prix =
+						{{ plat.prix  }}
+						€
+						<div>
+							<button type="submit"><a href="{{path('app_panier_ajouter',{'id':plat.id})}}" 
+							
+							class="btn btn-success" ><i class="fa-sharp fa-solid fa-cart-shopping"></i>jouter au panier</a></button>
+							
+
+						</div>
+					</div>
+				</span>
 			</div>
 		</div>
-
 	</div>
 
-
-</div>{% endblock %}
+</div></div>{% endblock %}
