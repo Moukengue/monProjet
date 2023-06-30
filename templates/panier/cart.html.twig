@@ -11,30 +11,47 @@
   <section class="row">
   <div class="col-12">
   <h1>Panier</h1>
+  </div
   
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  </section>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </main>
- 
+  {% if items| length > 0 %}
 
+ <table class="table">  
+ <thead>
+ <tr>
+ <th>Libelle</th>
+ <th>prix</th>
+ <th>Quantité</th>
+ <th>Total</th>
+  </tr>
+ </thead>
+{% for item in items %}
+
+{% endfor %}
+ <tbody>
+ <tr>
+ <td>{{item.plat.libelle}}<td/>
+ <td> {{item.plat.prix}}<td/>
+ <td> {{item.quantity}}<td/>
+ <td> {{item.plat.prix * item.quantity}} <td/>
+ <td>
+ a.btn.btn-danger.btn-sm
+ <a href="" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a>
+
+ <td/>
+
+ </tr>
+ </tbody>
+  </table>
+
+
+  {% else %}
+  <p> Surprise, c'est vide !</p>
+  {% endif %}
+  
+  
+  
+  
+  
 
 
   

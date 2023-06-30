@@ -19,28 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 class CartController extends AbstractController{
-    
-      
-// #[Route('/panier/ajouter', name: 'app_panier_ajouter')]
-// public function panier_ajout(Plat $plats): Response
-// {
-
-//     //mes fonctions, ce que je veux envoyer à ma page : $moninfo
    
-//     return $this->render('panier/ajouter.html.twig', [
-//         'controller_name' => 'PanierController',
-//         //mes infos, mes resultats
-//         // 'mon_info' => $moninfo,
-//     ]);
-// }
-
-// public function add($id,SessionInterface $session){
-//         dd($session);
-//      }
-
-/**
- * Route("/ panier")
- */
 #[Route('/panier/cart', name: 'app_panier_cart')] 
 
  public function index(SessionInterface $session, PlatRepository $platRepository){
@@ -55,7 +34,9 @@ class CartController extends AbstractController{
    ];
    }
 
-    return $this->render('panier/cart.html.twig', []);
+    return $this->render('panier/cart.html.twig', [
+      'items' => $panierWithData
+    ]);
  }
 
  /**
@@ -86,13 +67,3 @@ class CartController extends AbstractController{
 
 
 }
-
-
-
-
-
-
-
-
-
-?>
