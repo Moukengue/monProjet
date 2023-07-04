@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controller;
+
 use App\Entity\Categorie;
 use App\Entity\Plat;
 use App\Entity\commande;
@@ -18,52 +20,93 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class CartController extends AbstractController{
-   
-#[Route('/panier/cart', name: 'app_panier_cart')] 
+class CartController extends AbstractController
+{
 
- public function index(SessionInterface $session, PlatRepository $platRepository){
-   $panier =$session->get('panier',[]);
+  #[Route('/panier/cart', name: 'app_panier_cart')]
 
-   $panierWithData = [];
+  public function index(SessionInterface $session, PlatRepository $platRepository)
+  {
+    $panier = $session->get('panier', []);
 
-   foreach($panier as $id => $quantity){
-   $panierWithData[] = [ 
-      'plat'=> $platRepository->find($id),
-      'quantity' => $quantity
-   ];
-   }
+    $panierWithData = [];
+
+    foreach ($panier as $id => $quantity) {
+      $panierWithData[] = [
+        'plat' => $platRepository->find($id),
+        'quantity' => $quantity
+      ];
+    }
+    $total = 0;
+    foreach ($panierWithData as $item) {
+      $totalItem = $item['plat']->getPrix() * $item['quantity'];
+      $total += $totalItem;
+    }
 
     return $this->render('panier/cart.html.twig', [
-      'items' => $panierWithData
+      'items' => $panierWithData,
+      'total' => $total
     ]);
- }
-
- /**
- * Route("/ panier" ajouter)
- */
- 
- #[Route("/panier/add/{id}", name: "app_panier_ajouter")]
-
- public function add($id, Request  $request){
-  $session = $request->getSession();
-
-  $panier = $session->get('panier',[]);
-
-  if(!empty($panier[$id])){
-   $panier[$id]++;
-  }else {
-
-   $panier[$id] = 1;
   }
 
-  $panier[$id ] = 1;
+ 
 
-  $session->set('panier',$panier);
-  dd($session->get('panier'));
+  #[Route("/panier/add/{id}", name: "app_panier_ajouter")]
+
+  public function add($id, Request  $request)
+  {
+    /**
+     * Récuperer le panier
+     */
+    $session = $request->getSession();
+    /**
+     *On récupére le panier actuel
+     */
+    $panier = $session->get('panier', []);
+    // dd($panier);
+
+    //si le panier n'est pas vide, on ajoute les autres plats
+    if (!empty($panier[$id])) {
+      $panier[$id]++;
+    } else {
+//autrement ce sera notre premier plat
+      $panier[$id] = 1;
+    }
+
+    // $panier[$id] = 1;
+    // on sauvegarde dans le session
+
+    $session->set('panier', $panier);
+    // dd($session->get('panier'));
+    return $this-> redirectToRoute('app_panier_cart');
+  }
+
+ 
+// Retire un produit
+#[Route("/panier/remove/{id}", name: "app_panier_remove")]
+ public function remove($id, Request  $request){
+ 
+  $session = $request->getSession();
+
+   $panier = $session->get('panier',[]);
+
+   if(!empty($panier[$id])){
+    // dd($panier[$id]);
+
+    if($panier[$id] > 1){
+      $panier[$id]--;
+    }else{
+      unset($panier[$id]);
+    }
+
+   
+   }
+   $session->set('panier',$panier);
+   return $this-> redirectToRoute('app_panier_cart');
+
+//   $session->set('panier',$panier);
+//   // dd($session->get('panier'));
 
  }
-
-
 
 }

@@ -48,10 +48,10 @@
 						{{ plat.prix  }}
 						€
 						<div>
-							<button type="submit"><a href="{{path('app_panier_ajouter',{'id':plat.id})}}" 
-							
-							class="btn btn-success" ><i class="fa-sharp fa-solid fa-cart-shopping"></i>jouter au panier</a></button>
-							
+							<button>
+								<a href="{{path('app_panier_ajouter',{'id':plat.id})}}">Ajouter au panier</a>
+								<i class="fa-solid fa-cart-shopping"></i>
+							</button>
 
 						</div>
 					</div>

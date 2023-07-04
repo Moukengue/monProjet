@@ -1,68 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sym_The_district!{% endblock %}
+{% block title %}Sym_The_district!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
- 
-
-  <div class="mt-3 mb-3 p-5">
-    <div class="row">
-      <div class="col-md-6 col-sm-12 mx-auto p-3" style="background-color:purple">
-        <form method="post" action="/recherche" class="d-flex" role="search">
-          <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche" aria-label="Search" required />
-        </form>
-      </div>
-    </div>
-
-  </div>
-
-  <!---Les categories-->
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-         <div class="col ">
-             <div class="card ">
-                 <h1>Nombre categories trouvés : {{ categories | length }}</h1>
-                 {% for categorie in categories %}
-                 <span class="d-block">
-                     {{ categorie["libelle"]|upper }} 
-                     <img src="{{ asset('image/category_actuel/') ~ categorie.image }}" />
-                 </span>
-                <a href="{{ path('app_categorie_detail',{'id':categorie.id}) }}" id="btn-style" class="btn">Détail</a>
-                 {% endfor %}
-             </div>
-         </div>
-     </div>
-
-  
-
-  <!--fin categorie-->
-  <!--les plats accueil-->
-  
-
-  <div class="card-group ">
-   <div class="row mt-5">
-             <div class="col-10 mx-auto">
-                 <h1>Nombre plats trouvés : {{ plats | length }}</h1>
-                 {% for plat in plats %}
-                 <span class="d-block">
-                     {{ plat ["libelle"]|upper }} 
-                     <img src="{{ asset('image/food_actuel/') ~ plat.image }}" />
-                 </span>
-                 <!--pour afficher id du plat.detail-->
-                 <div class= "card-body">
-                 <h1  class="card-title"id="card-text">{{plat.libelle}}</h1>
-                 </div>
-                  <a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn">Détail</a>
-                 {% endfor %}
-             </div>
-         </div>
-     </div>
-  </div>
-  <!--fin plats-->
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		img {
+			margin: 1px;
+			height: auto;
+			width: 35%;
+			padding: 1px;
 
 
-{% endblock %}
+		}
+	</style>
+
+
+	<div class="mt-3 mb-3 p-5">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 mx-auto p-3" style="background-color:purple">
+				<form method="post" action="/recherche" class="d-flex" role="search">
+					<input class="form-control me-2" type="search" name="recherche" placeholder="Recherche" aria-label="Search" required/>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<!---Les categories-->
+
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		<div class="col ">
+			<div class="card ">
+				<h1>Nombre categories trouvés :
+					{{ categories | length }}</h1>
+				{% for categorie in categories %}
+					<span >
+
+						{{ categorie["libelle"]|upper }}
+						<div class="col">
+							<div class="card">
+								<img src="{{ asset('image/category_actuel/') ~ categorie.image }}"/>
+							</span>
+							<div class="card-body" style="width: 500px">
+								<a href="{{ path('app_categorie_detail',{'id':categorie.id}) }}" id="btn-style" class="btn">Détail</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				</div>
+				         </div> 
+			</div>
+
+
+			<!--fin categorie-->
+			<!--les plats accueil-->
+
+
+			<div class="card-group ">
+				
+					<div class="col-10 mx-auto">
+						<h1>Les Plats les plus vendus :
+							{{ plats | length }}</h1>
+						{% for plat in plats %}
+							<span>
+								{{ plat ["libelle"]|upper }}
+                <div class="card m-4">
+								<img src="{{ asset('image/food_actuel/') ~ plat.image }}"/>
+							</span>
+							<!--pour afficher id du plat.detail-->
+							<div class="card-body">
+								<h1 class="card-title" id="card-text">{{plat.libelle}}</h1>
+							</div>
+							<a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn"  class="card-title" >Détail</a>
+              </div>
+						{% endfor %}
+					</div>
+				
+			</div>
+		</div>
+		<!--fin plats-->
+
+
+	{% endblock %}
