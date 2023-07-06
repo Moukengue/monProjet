@@ -11,6 +11,7 @@ use App\Repository\CategorieRepository;
 use App\Repository\DetailRepository;
 use App\Repository\UtilisateurRepository;
 use App\Repository\PlatRepository;
+use App\Service\CartService;
 use SessionIdInterface;
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,21 +23,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
+   
+    private $platRepo;
+    private $userRepo;
+    private $cs;
+
+
+    public function __construct(PlatRepository $platRepo, UtilisateurRepository $userRepo,  CartService $cs){
+     
+        $this->platRepo = $platRepo;
+        $this->userRepo = $userRepo;
+        $this->cs = $cs;
+
+    }
 
   #[Route('/panier/cart', name: 'app_panier_cart')]
 
-  public function index(SessionInterface $session, PlatRepository $platRepository)
+  public function index()
   {
-    $panier = $session->get('panier', []);
+    $panierWithData = $this->cs->getCart();
 
-    $panierWithData = [];
+    // $panier = $session->get('panier', []);
 
-    foreach ($panier as $id => $quantity) {
-      $panierWithData[] = [
-        'plat' => $platRepository->find($id),
-        'quantity' => $quantity
-      ];
-    }
+
+
+    // $panierWithData = [];
+
+    // foreach ($panier as $id => $quantity) {
+    //   $panierWithData[] = [
+    //     'plat' => $platRepository->find($id),
+    //     'quantity' => $quantity
+    //   ];
+    // }
     $total = 0;
     foreach ($panierWithData as $item) {
       $totalItem = $item['plat']->getPrix() * $item['quantity'];
@@ -55,29 +73,30 @@ class CartController extends AbstractController
 
   public function add($id, Request  $request)
   {
+    $addPlat = $this->cs->addToCart($id);
     /**
      * Récuperer le panier
      */
-    $session = $request->getSession();
+    // $session = $request->getSession();
     /**
      *On récupére le panier actuel
      */
-    $panier = $session->get('panier', []);
+    // $panier = $session->get('panier', []);
     // dd($panier);
 
     //si le panier n'est pas vide, on ajoute les autres plats
-    if (!empty($panier[$id])) {
-      $panier[$id]++;
-    } else {
-//autrement ce sera notre premier plat
-      $panier[$id] = 1;
-    }
+//     if (!empty($panier[$id])) {
+//       $panier[$id]++;
+//     } else {
+// //autrement ce sera notre premier plat
+//       $panier[$id] = 1;
+//     }
 
-    // $panier[$id] = 1;
-    // on sauvegarde dans le session
+//     // $panier[$id] = 1;
+//     // on sauvegarde dans le session
 
-    $session->set('panier', $panier);
-    // dd($session->get('panier'));
+//     $session->set('panier', $panier);
+//     // dd($session->get('panier'));
     return $this-> redirectToRoute('app_panier_cart');
   }
 
@@ -96,6 +115,7 @@ class CartController extends AbstractController
     if($panier[$id] > 1){
       $panier[$id]--;
     }else{
+      
       unset($panier[$id]);
     }
 

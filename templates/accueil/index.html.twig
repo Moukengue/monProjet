@@ -15,14 +15,13 @@
 			background: #F5F5F5;
 			padding: 2px 6px;
 		}
-		img {
+		/* img {
 			margin: 1px;
 			height: auto;
 			width: 35%;
-			padding: 1px;
+			padding: 1px; 
 
-
-		}
+		 } */
 	</style>
 
 
@@ -82,7 +81,7 @@
 							<div class="card-body">
 								<h1 class="card-title" id="card-text">{{plat.libelle}}</h1>
 							</div>
-							<a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn"  class="card-title" >Détail</a>
+							<a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn"  class="card-title">Détail</a>
               </div>
 						{% endfor %}
 					</div>
