@@ -22,17 +22,19 @@
 
 	<div class="row">
 		<div class="col">
-			<a href="plat_detail.php?plat_id=<?php echo $plat->id; ?>" class="text-decoration-none">
+			
 				<div class="card">
 					 <div class="col-10 mx-auto"> 
                  <h1>Nos PLats {{ plats | length }}</h1>
 
                  {% for plat in plats %}
+				 <a href="{{ path('app_plat_detail',{'id':plat.id}) }}" class="text-decoration-none">
                  <span class="d-block">
                      {# {{ plat ["libelle"]|upper }}  #}
                      <img src="{{ asset('image/food_actuel/') ~ plat.image  }}" />
 					   <a href="{{ path('app_plat_detail',{'id':plat.id}) }}" id="btn-style" class="btn" type="none">Détail</a>
                  </span>
+				 </a>
                  {% endfor %}
              </div>
 			        {# <a href="{{path("panier_ajouer",{id:plat.id})}}"  class="btn btn-success"  <i class="fa-solid fa-cart-minus"></i> > Ajouter</a> #}
