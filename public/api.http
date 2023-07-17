@@ -1,0 +1,10 @@
+http://127.0.0.1:8000/api/categories 
+
+#####################################
+http://127.0.0.1:8000/api/plats
+
+#####################################
+http://127.0.0.1:8000/api/plats/177
+
+###################################
+GET http://api.themoviedb.org/3/search/movie?api_key=f33cd318f5135dba306176c13104506a&query=avenger
