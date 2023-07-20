@@ -9,14 +9,16 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+// je vien de déclaré l'entité categorie comme ressource API, on fera de memee avec l'entité Plat
 use ApiPlatform\Metadata\ApiProperty;
-
+// API
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
-
+// API
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
 )]
+// Fin API
 class Plat
 {
     #[ORM\Id]

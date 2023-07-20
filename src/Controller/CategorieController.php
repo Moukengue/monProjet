@@ -32,6 +32,7 @@ class CategorieController extends AbstractController
     #[Route('/categorie', name: 'app_categorie')]
     public function index(categorieRepository $categorieRepo): Response
     {
+        // findAll récupère tous les objets (un peu comme un 'SELECT *' en SQL)
         $categories = $categorieRepo -> findAll();
         return $this->render('categorie/index.html.twig', [
             'controller_name' => 'CategorieController',

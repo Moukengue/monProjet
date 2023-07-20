@@ -20,9 +20,11 @@ class ContactFormType extends AbstractType
 
             ->add('message', TextareaType::class, [
                 'label' => 'Votre message',
+                // Une des options les plus utilisées sur les formulaires est required, qui est par défaut à "true. Si vous voulez qu'un champ ne le soit pas, il faut passer required à false
                 'required' => false
                 ]
             )
+            // 
             ->add('save', SubmitType::class, [
                 'label' => 'Envoyer le message'])
         ;
