@@ -1,5 +1,5 @@
 <?php
-
+// Un contrôleur possède plusieurs méthodes, chaque méthode est associée à une route.
 namespace App\Controller;
 
 use App\Entity\Categorie;
@@ -30,7 +30,7 @@ class AccueilController extends AbstractController
         $this->detailRepo = $detailRepo;
     }
 
-
+ // une route en Symfony, avec object type Response
     #[Route('/', name: 'app_accueil')]
     public function index( ): Response
 
@@ -44,7 +44,7 @@ class AccueilController extends AbstractController
      
     //  dd($plats);
 
-
+     //Ce template est la vue que le contrôleur affichera à l'utilisateur. qui est accueil/index.html.twig. Le Template est la methode utilise pour affiche le code a l'utilisateur.
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'categories'=> $categories,

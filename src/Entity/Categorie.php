@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+// je vien de déclaré l'entité categorie comme ressource API, on fera de memee avec l'entité Plat
 use ApiPlatform\Metadata\ApiResource;
 
 
