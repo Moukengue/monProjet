@@ -25,7 +25,7 @@ class CartService {
     {
         $session = $this->requestStack->getSession();
         $panier = $session->get('panier', []);
-  
+      //  Pour enrichir mon panier,avec tout les image,quantité,prix et total
         $panierWithData = [];
   
       foreach ($panier as $id => $quantity) {

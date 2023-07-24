@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//utilisé pour gérer la sécurité
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id]
+    #[ORM\Id] //cle primaire
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -63,12 +64,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-
+//  pour récupérer les informations de l'utilisateur
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
+// stocker les informations de l'utilisateur
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -182,7 +183,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        //garantir que chaque utilisateur a au moins ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);

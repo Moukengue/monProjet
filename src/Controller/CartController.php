@@ -70,7 +70,7 @@ class CartController extends AbstractController
  
 
   #[Route("/panier/add/{id}", name: "app_panier_ajouter")]
-
+  // Ajouter le produit au panier avec identifiant
   public function add($id, Request  $request)
   {
     $addPlat = $this->cs->addToCart($id);

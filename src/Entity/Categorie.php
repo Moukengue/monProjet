@@ -27,7 +27,7 @@ class Categorie
 
     #[ORM\Column]
     private ?bool $active = null;
-
+    // nous avons une relation entre Categorie et plat .
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Plat::class)]
     private Collection $plats;
 
@@ -76,15 +76,18 @@ class Categorie
 
         return $this;
     }
+    // Ici on les 3 methodes ;
 
     /**
      * @return Collection<int, Plat>
      */
+    //permet de rechercher des catégories.
+    
     public function getPlats(): Collection
     {
         return $this->plats;
     }
-
+    //  permet de ajouter des catégories
     public function addPlat(Plat $plat): self
     {
         if (!$this->plats->contains($plat)) {
@@ -94,7 +97,7 @@ class Categorie
 
         return $this;
     }
-
+//   permet de retirer des catégories
     public function removePlat(Plat $plat): self
     {
         if ($this->plats->removeElement($plat)) {

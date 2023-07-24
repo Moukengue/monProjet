@@ -15,10 +15,10 @@ class Detail
 
     #[ORM\Column]
     private ?int $quantite = null;
-
+// une relation relier sur commande
     #[ORM\ManyToOne(inversedBy: 'details')]
     private ?Commande $commande = null;
-
+//   une relation avec plat
     #[ORM\ManyToOne(inversedBy: 'details')]
     private ?Plat $plat = null;
 
